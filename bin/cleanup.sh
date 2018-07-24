@@ -8,9 +8,7 @@
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
-# disables API-Gateway Gravitee in Nginx
-
-#rm -r k8s/gravitee-helm/
+rm -r k8s/gravitee-helm/
 helm del --purge api-gateway
 kubectl delete ns security
 
