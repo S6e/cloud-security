@@ -1,0 +1,39 @@
+##################################################
+#
+# Configuration for the elasticsearch cluster consisting of Elasticsearch data,
+# master, and client nodes.
+#
+# The file defines a Kubernetes custom resource "ElasticsearchCluster" which is
+# processed by the Elasticsearch operator
+# https://github.com/upmc-enterprises/elasticsearch-operator
+#
+##################################################
+---
+apiVersion: enterprises.upmc.com/v1
+kind: ElasticsearchCluster
+metadata:
+  name: elastic
+spec:
+# gravitee cannot use ssl for elasticsearch
+  use-ssl: false
+  elastic-search-image: upmcenterprises/docker-elasticsearch-kubernetes:6.1.3_1
+  client-node-replicas: 1
+  master-node-replicas: 1
+  data-node-replicas: 1
+  network-host: 0.0.0.0
+  zones: []
+  data-volume-size: 1Gi
+  java-options: "-Xms2048m -Xmx2048m"
+  snapshot:
+    scheduler-enabled: false
+    bucket-name: elasticsnapshots99
+    cron-schedule: "@every 2m"
+  storage:
+    storage-class: security-es-data
+  resources:
+    requests:
+      memory: 2048Mi
+      cpu: 500m
+    limits:
+      memory: 3072Mi
+      cpu: '2'

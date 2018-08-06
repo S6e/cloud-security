@@ -1,0 +1,27 @@
+---
+{{- range $host := .Values.nodes }}
+    {{- range $i, $e := until ($.Values.volumes|int) }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{$.Values.storageClassName}}-{{$host}}-{{$i}}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: {{ $.Values.persistentVolumeReclaimPolicy}}
+  capacity:
+    storage: {{ $.Values.size }}
+  storageClassName: {{ $.Values.storageClassName }}
+  local:
+    path: {{$.Values.path}}/{{$i}}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {{$host}}
+---
+    {{- end -}}
+{{- end }}
