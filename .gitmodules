@@ -1,0 +1,3 @@
+[submodule "k8s/gravitee-helm"]
+	path = k8s/gravitee-helm
+	url = https://github.com/S6e/gravitee-kubernetes.git

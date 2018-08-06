@@ -20,3 +20,4 @@ clean :
 reinstall:
 	./bin/cleanup.sh
 	./bin/setup-api-gateway.sh
+	
