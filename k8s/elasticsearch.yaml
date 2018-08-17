@@ -12,7 +12,7 @@
 apiVersion: enterprises.upmc.com/v1
 kind: ElasticsearchCluster
 metadata:
-  name: elastic
+  name: gravitee
 spec:
 # gravitee cannot use ssl for elasticsearch
   use-ssl: false

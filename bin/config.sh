@@ -19,3 +19,7 @@ PV_ES_PATH="/data/api-gw-es"
 PV_ES_SIZE="1Gi"
 PV_ES_VOLUMES_PER_NODE="3" # max=10
 
+# Persistent volume settings for keycloak postgres
+PV_POSTGRES_PATH="/data/api-gw-postgres"
+PV_POSTGRES_SIZE="1Gi"
+PV_POSTGRES_VOLUMES_PER_NODE="3"
