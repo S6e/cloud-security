@@ -17,6 +17,7 @@ source ~/.nodelist
 ##################################################
 
 # Delete helm charts
+kubectl delete -f k8s/cloud-native-javaee/kubernetes/ -n security
 kubectl delete -f k8s/elasticsearch.yaml -n security
 helm del --purge api-gateway
 helm del --purge keycloak
@@ -47,4 +48,4 @@ clean_hosts_file() {
 	done
 }
 
-clean_hosts_file gravitee gravitee-api gravitee-gateway gravitee-ui keycloak
+clean_hosts_file gravitee gravitee-api gravitee-gateway gravitee-ui keycloak dashboard-service

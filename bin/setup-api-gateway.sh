@@ -49,6 +49,14 @@ helm install --name keycloak --namespace $ns \
 
 
 ####################################################
+# Install showcase
+####################################################
+
+sed -i "s/traefik/nginx/g" k8s/cloud-native-javaee/kubernetes/dashboard-service-ingress.yaml
+kubectl apply -f k8s/cloud-native-javaee/kubernetes/ -n $ns
+
+
+####################################################
 # Modify /etc/hosts of master node
 ####################################################
 
@@ -61,4 +69,4 @@ modify_hosts_file() {
 	done
 }
 
-modify_hosts_file gravitee-api gravitee-gateway gravitee-ui keycloak
+modify_hosts_file gravitee-api gravitee-gateway gravitee-ui keycloak dashboard-service
