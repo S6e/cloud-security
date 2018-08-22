@@ -2,6 +2,9 @@ package de.qaware.oss.cloud.service.dashboard;
 
 import io.opentracing.Tracer;
 import io.opentracing.contrib.jaxrs2.server.ServerTracingDynamicFeature;
+import io.swagger.jaxrs.config.BeanConfig;
+import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.SwaggerSerializers;
 
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
@@ -32,6 +35,9 @@ public class DashboardServiceAPI extends Application {
 
         classes.add(BroadcastResource.class);
         classes.add(GuiResource.class);
+
+        classes.add(ApiListingResource.class);
+        classes.add(SwaggerSerializers.class);
 
         return classes;
     }

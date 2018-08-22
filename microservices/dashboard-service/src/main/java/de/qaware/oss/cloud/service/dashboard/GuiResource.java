@@ -1,5 +1,7 @@
 package de.qaware.oss.cloud.service.dashboard;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -17,6 +19,7 @@ import java.util.logging.Logger;
 
 @ApplicationScoped
 @Path("gui")
+@Api(value = "GUI resource")
 public class GuiResource {
 
     @Inject
@@ -28,6 +31,7 @@ public class GuiResource {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Traced(operationName = "POST send")
+    @ApiOperation(value = "Send event")
     public Response send(@FormParam("processId") @NotBlank String processId,
                          @FormParam("name") @NotBlank String name,
                          @FormParam("amount") @NotNull Long amount) {

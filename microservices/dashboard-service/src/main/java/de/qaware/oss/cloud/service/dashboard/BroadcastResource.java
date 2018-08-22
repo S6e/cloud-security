@@ -1,6 +1,8 @@
 package de.qaware.oss.cloud.service.dashboard;
 
 import io.opentracing.contrib.cdi.Traced;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.eclipse.microprofile.metrics.annotation.Gauge;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +24,7 @@ import java.util.logging.Logger;
 
 @ApplicationScoped
 @Path("broadcast")
+@Api(value = "Broadcast resource")
 public class BroadcastResource {
 
     @Inject
@@ -50,6 +53,7 @@ public class BroadcastResource {
 
     @GET
     @Produces(MediaType.SERVER_SENT_EVENTS)
+    @ApiOperation(value = "Get details for events")
     public void fetch(@Context SseEventSink sseEventSink) {
         logger.info("Registering new SSE event sink with broadcaster.");
         sseBroadcaster.register(sseEventSink);

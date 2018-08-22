@@ -4,6 +4,8 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
+    mavenCentral()
     jcenter()
 }
 
@@ -22,6 +24,8 @@ configurations {
 
 dependencies {
     providedCompile 'javax:javaee-api:8.0'
+
+    compile 'io.swagger:swagger-jaxrs:1.5.21'
 
     providedCompile 'org.eclipse.microprofile.health:microprofile-health-api:1.0'
     providedCompile 'org.eclipse.microprofile.metrics:microprofile-metrics-api:1.0'

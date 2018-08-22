@@ -1,6 +1,8 @@
 package de.qaware.oss.cloud.service.process.boundary;
 
 import de.qaware.oss.cloud.service.process.integration.ProcessServiceConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.deltaspike.core.api.projectstage.ProjectStage;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.opentracing.Traced;
@@ -18,6 +20,7 @@ import javax.ws.rs.core.Response;
 @ApplicationScoped
 @Path("config")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value = "Process config resource")
 public class ConfigResource {
 
     @Inject
@@ -29,6 +32,7 @@ public class ConfigResource {
     @GET
     @Timed(unit = "milliseconds")
     @Traced(operationName = "GET /api/config")
+    @ApiOperation(value = "Get config of process")
     public Response config() {
         JsonObject result = Json.createObjectBuilder()
                 .add("projectStage", projectStage.toString())

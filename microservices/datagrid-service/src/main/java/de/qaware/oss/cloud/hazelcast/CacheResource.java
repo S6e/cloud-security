@@ -1,5 +1,7 @@
 package de.qaware.oss.cloud.hazelcast;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.cache.Cache;
@@ -23,6 +25,7 @@ import java.util.Optional;
 @Path("/hazelcast")
 @Produces(MediaType.APPLICATION_JSON)
 @Traced
+@Api(value = "Cache Resource")
 public class CacheResource {
 
     @Inject
@@ -33,6 +36,7 @@ public class CacheResource {
 
     @GET
     @Path("/{name}")
+    @ApiOperation(value = "Get Cache value by name")
     public Response getCacheByName(@PathParam("name") String name) {
         Cache<Object, Object> cache = cacheManager.getCache(name);
         if (cache == null) {
@@ -44,6 +48,7 @@ public class CacheResource {
 
     @PUT
     @Path("/{name}")
+    @ApiOperation(value = "Create Cache by name")
     public Response createCacheByName(@PathParam("name") String name) {
         Cache<Object, Object> cache = getOrCreateCache(name);
         URI uri = uriInfo.getBaseUriBuilder()
@@ -55,6 +60,7 @@ public class CacheResource {
 
     @GET
     @Path("/{name}/{key}")
+    @ApiOperation(value = "Get cache entry from a specific cache by key")
     public JsonObject getCacheEntry(@PathParam("name") String name, @PathParam("key") String key) {
         Cache<Object, Object> cache = getOrCreateCache(name);
 
@@ -69,6 +75,7 @@ public class CacheResource {
     @POST
     @Path("/{name}/{key}")
     @Consumes({MediaType.TEXT_PLAIN})
+    @ApiOperation(value = "Put entry in specific cache with a key")
     public Response putCacheEntry(@PathParam("name") String name, @PathParam("key") String key, String value) {
         Cache<Object, Object> cache = getOrCreateCache(name);
         cache.put(key, value);

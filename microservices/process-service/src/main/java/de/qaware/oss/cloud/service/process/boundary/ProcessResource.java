@@ -2,6 +2,8 @@ package de.qaware.oss.cloud.service.process.boundary;
 
 import de.qaware.oss.cloud.service.process.domain.ProcessEvent;
 import de.qaware.oss.cloud.service.process.domain.ProcessStatusCache;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.opentracing.Traced;
 
@@ -26,6 +28,7 @@ import java.util.logging.Logger;
 @ApplicationScoped
 @Path("process")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value = "Process resource")
 public class ProcessResource {
 
     @Inject
@@ -43,6 +46,7 @@ public class ProcessResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Timed(unit = "milliseconds")
+    @ApiOperation(value = "Post new process")
     public void process(@Suspended AsyncResponse response, @NotNull JsonObject jsonObject) {
         logger.log(Level.INFO, "POST new process {0}", jsonObject);
 
@@ -61,6 +65,7 @@ public class ProcessResource {
     @Path("/{processId}/status")
     @Timed(unit = "milliseconds")
     @Traced(operationName = "GET /api/process")
+    @ApiOperation(value = "Get process by id")
     public Response process(@PathParam("processId") String processId) {
         logger.log(Level.INFO, "GET process status for {0}", processId);
 
