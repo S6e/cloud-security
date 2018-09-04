@@ -42,14 +42,14 @@ public class ProcessServiceClient {
 
     @Timeout(value = 5, unit = ChronoUnit.SECONDS)
     @Traced
-    public void send(String processId, String name, Long amount) {
+    public void send(String processId, String name, Long amount, String bearer) {
         JsonObject payload = Json.createObjectBuilder()
                 .add("processId", processId)
                 .add("name", name)
                 .add("amount", amount)
                 .build();
 
-        Response response = processService.request().post(Entity.json(payload));
+        Response response = processService.request().header("Authorization", bearer).post(Entity.json(payload));
         Response.StatusType statusInfo = response.getStatusInfo();
         if (!Response.Status.Family.SUCCESSFUL.equals(statusInfo.getFamily())) {
             throw new BadRequestException(statusInfo.getReasonPhrase());
