@@ -32,7 +32,7 @@ public class ProcessServiceClient {
                 .readTimeout(5, TimeUnit.SECONDS)
                 .build();
 
-        processService = client.target("http://process-service:8080").path("/api/process");
+        processService = client.target("http://gravitee-gateway.local:8080").path("/process-service/api/process");
     }
 
     @PreDestroy
