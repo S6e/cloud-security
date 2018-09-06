@@ -18,6 +18,7 @@ spec:
     spec:
       containers:
       - image: s6er/dashboard-service:0.1
+        imagePullPolicy: Always
         name: dashboard-service
         env:
         - name: JAEGER_SERVICE_NAME
