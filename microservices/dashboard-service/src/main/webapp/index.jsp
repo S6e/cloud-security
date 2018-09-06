@@ -71,7 +71,7 @@
                         var urlEncodedDataPairs = [];
                         var http = new XMLHttpRequest();
 
-                        http.open("POST", "dashboard-service/api/gui", true);
+                        http.open("POST", "/api/gui", true);
                         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                         http.setRequestHeader("Authorization", "Bearer iAm1Bearer");
 
@@ -101,7 +101,7 @@
 
                 <script>
                     if (typeof(EventSource) !== "undefined") {
-                        var source = new EventSource("/dashboard-service/api/broadcast");
+                        var source = new EventSource("/api/broadcast");
 
                         source.addEventListener("event", function (e) {
                             document.getElementById("events").innerHTML += "(SSE) " + e.data + "<br>";
