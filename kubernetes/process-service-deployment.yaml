@@ -19,7 +19,7 @@ spec:
         prometheus.io/port: '8080'
     spec:
       containers:
-      - image: lreimer/process-service:2.1
+      - image: s6er/process-service:0.1
         name: process-service
         env:
         - name: JAEGER_SERVICE_NAME
