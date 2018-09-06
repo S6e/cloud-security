@@ -8,10 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.logging.Level;
@@ -34,9 +31,10 @@ public class GuiResource {
     @ApiOperation(value = "Send event")
     public Response send(@FormParam("processId") @NotBlank String processId,
                          @FormParam("name") @NotBlank String name,
-                         @FormParam("amount") @NotNull Long amount) {
-        logger.log(Level.INFO, "Received form POST request ({0}, {1}, {2}).", new Object[]{processId, name, amount});
-        processService.send(processId, name, amount);
+                         @FormParam("amount") @NotNull Long amount,
+                         @HeaderParam("Authorization") @NotBlank String bearer) {
+        logger.log(Level.INFO, "Received form POST request ({0}, {1}, {2}, {3}).", new Object[]{processId, name, amount, bearer});
+        processService.send(processId, name, amount, bearer);
         return Response.noContent().build();
     }
 

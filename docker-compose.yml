@@ -43,7 +43,7 @@ services:
 
   process-service:
     build: ./microservices/process-service
-    image: lreimer/process-service:2.1
+    image: s6er/process-service:0.1
     mem_limit: 600m
     environment:
       - org_apache_deltaspike_ProjectStage=Development
@@ -116,7 +116,7 @@ services:
 
   dashboard-service:
     build: ./microservices/dashboard-service
-    image: lreimer/dashboard-service:1.2
+    image: s6er/dashboard-service:0.2
     mem_limit: 600m
     environment:
       - JAEGER_SERVICE_NAME=dashboard-service

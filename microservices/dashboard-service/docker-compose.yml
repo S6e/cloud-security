@@ -15,7 +15,7 @@ services:
 
   dashboard-service:
     build: .
-    image: lreimer/dashboard-service:1.2
+    image: s6er/dashboard-service:0.1
     mem_limit: 600m
     environment:
       - org_apache_deltaspike_ProjectStage=Development

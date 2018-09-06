@@ -73,6 +73,7 @@
 
                         http.open("POST", "/api/gui", true);
                         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        http.setRequestHeader("Authorization", "Bearer iAm1Bearer");
 
                         var processId = document.getElementById('processId').value;
                         document.getElementById('processId').value = "";
