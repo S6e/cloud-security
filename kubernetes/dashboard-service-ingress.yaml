@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: dashboard-service
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - host: dashboard-service.local
