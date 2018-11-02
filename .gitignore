@@ -1,2 +1,15 @@
-# Ignore logs from nodes
-logs/
+# IntelliJ
+.idea/
+out/
+*.iml
+*.iws
+*.ipr
+*.log
+
+# Gradle
+.gradle/
+.gradletasknamecache
+build/
+
+# OSX
+*.DS_Store

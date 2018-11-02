@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    io.kompose.service: billing-service
+    hazelcast: enabled
+  name: billing-service
+spec:
+  replicas: 1
+  selector:
+    io.kompose.service: billing-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: billing-service
+        hazelcast: enabled
+    spec:
+      containers:
+      - image: ' '
+        name: billing-service
+        env:
+        - name: JAEGER_SERVICE_NAME
+          value: "billing-service"
+        - name: JAEGER_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: JAEGER_REPORTER_LOG_SPANS
+          value: "true"
+        - name: JAEGER_SAMPLER_TYPE
+          value: "const"
+        - name: JAEGER_SAMPLER_PARAM
+          value: "1"
+        ports:
+        - containerPort: 8080
+        - containerPort: 5701
+        resources:
+          requests:
+            memory: "400Mi"
+            cpu: "250m"
+          limits:
+            memory: "600Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /api/application.wadl
+            port: 8080
+          initialDelaySeconds: 120
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        resources: {}
+        volumeMounts:
+        - mountPath: /billing-service/config/
+          name: billing-service-config-volume
+          readOnly: true
+      restartPolicy: Always
+      volumes:
+      - name: billing-service-config-volume
+        configMap:
+          name: billing-service-config
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - billing-service
+      from:
+        kind: ImageStreamTag
+        name: billing-service:2.1
+    type: ImageChange

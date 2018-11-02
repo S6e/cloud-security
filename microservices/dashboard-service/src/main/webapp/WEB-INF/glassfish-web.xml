@@ -1,0 +1,28 @@
+<!DOCTYPE glassfish-web-app PUBLIC
+        "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN"
+        "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
+<glassfish-web-app>
+    <context-root>/</context-root>
+    <class-loader delegate="false"/>
+
+    <!--<servlet>-->
+        <!--<servlet-name>SwaggerBootstrap</servlet-name>-->
+        <!--<servlet-class>io.swagger.api.util.Bootstrap</servlet-class>-->
+        <!--<load-on-startup>2</load-on-startup>-->
+    <!--</servlet>-->
+
+    <!--<servlet>-->
+        <!--<servlet-name>Jersey2Config</servlet-name>-->
+        <!--<servlet-class>io.swagger.jersey.config.JerseyJaxrsConfig</servlet-class>-->
+        <!--<init-param>-->
+            <!--<param-name>api.version</param-name>-->
+            <!--<param-value>1.0.0</param-value>-->
+        <!--</init-param>-->
+        <!--<init-param>-->
+            <!--<param-name>swagger.api.basepath</param-name>-->
+            <!--<param-value>http://localhost:8080/api</param-value>-->
+        <!--</init-param>-->
+        <!--<load-on-startup>2</load-on-startup>-->
+    <!--</servlet>-->
+
+</glassfish-web-app>

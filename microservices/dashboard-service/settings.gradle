@@ -1,0 +1,17 @@
+rootProject.name = 'dashboard-service'
+
+if (file('../../infrastructure/logging-jsr346').exists()) {
+    includeBuild('../../infrastructure/logging-jsr346') {
+        dependencySubstitution {
+            substitute module('de.qaware.oss.logging:logging-jsr346') with project(':')
+        }
+    }
+}
+
+if (file('../../infrastructure/tracing-jsr346').exists()) {
+    includeBuild('../../infrastructure/tracing-jsr346') {
+        dependencySubstitution {
+            substitute module('de.qaware.oss.tracing:tracing-jsr346') with project(':')
+        }
+    }
+}
