@@ -1,0 +1,6 @@
+[submodule "k8s/gravitee-helm"]
+	path = k8s/gravitee-helm
+	url = https://github.com/S6e/gravitee-kubernetes.git
+[submodule "k8s/cloud-native-javaee"]
+	path = k8s/cloud-native-javaee
+	url = git@gitlab.qaware.de:s.schreiner/cloud-native-javaee.git
